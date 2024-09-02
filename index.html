@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Ventas e Inventario</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#ventas" class="active">Ventas</a></li>
+            <li><a href="#carrito">Carrito</a></li>
+            <li><a href="#inventario">Inventario</a></li>
+            <li><a href="#registro">Registro</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="ventas" class="active">
+            <h2>Ventas</h2>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Buscar productos...">
+                <div id="searchSuggestions" class="search-suggestions"></div>
+            </div>
+            <div class="table-container">
+                <table id="resultadosBusqueda">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Producto</th>
+                            <th>Marca</th>
+                            <th>Rubro</th>
+                            <th>Precio Venta</th>
+                            <th>Cantidad</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="pagination-container">
+                <span id="totalProductos"></span>
+                <div id="paginationButtons" class="pagination-buttons"></div>
+            </div>
+        </section>
+
+        <section id="carrito">
+            <h2>Carrito de Compras</h2>
+            <div class="table-container">
+                <table id="carritoTable">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Descuento (%)</th>
+                            <th>Subtotal</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5" class="total-label">Total:</td>
+                            <td id="totalCarrito" class="total-amount">$0.00</td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="carrito-actions">
+                <button id="confirmarCompra">Confirmar Compra</button>
+                <button id="generarPresupuesto">Generar Presupuesto</button>
+                <div class="whatsapp-container">
+                    <input type="text" id="whatsappNumber" placeholder="Número de WhatsApp">
+                    <button id="enviarWhatsapp">Enviar por WhatsApp</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="inventario">
+            <h2>Inventario</h2>
+            <input type="file" id="fileInput" accept=".xlsx, .xls">
+            <button id="cargarInventario">Cargar Inventario</button>
+            <div class="table-container">
+                <table id="inventarioTable">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Producto</th>
+                            <th>Costo</th>
+                            <th>Margen Real</th>
+                            <th>Precio Venta</th>
+                            <th>Marca</th>
+                            <th>Rubro</th>
+                            <th>Depósito</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="registro">
+            <h2>Registro de Ventas</h2>
+            <div class="filter-container">
+                <label for="fechaDesde">Desde:</label>
+                <input type="date" id="fechaDesde">
+                <label for="fechaHasta">Hasta:</label>
+                <input type="date" id="fechaHasta">
+                <button id="filtrarVentas">Filtrar</button>
+            </div>
+            <div class="table-container">
+                <table id="registroVentas">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Código</th>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
+                            <th>Descuento</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <button id="descargarExcel">Descargar Excel</button>
+        </section>
+    </main>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <p id="modalMessage"></p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
